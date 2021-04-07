@@ -7,8 +7,6 @@
         "silverstripe/recipe-plugin": "^1.2",
         "silverstripe/recipe-cms": "4.7.3@stable",
         "silverstripe/login-forms": "4.3.0@stable",
-        "cwp/cwp": "dev-master",
-        "cwp/starter-theme": "dev-i3-modern",
         "burnbright/silverstripe-hasonefield": "dev-master",
         "undefinedoffset/sortablegridfield": "dev-master",
         "bummzack/sortablefile": "dev-master",
@@ -17,7 +15,11 @@
         "tractorcow/silverstripe-colorpicker": "^4@dev",
         "tractorcow/silverstripe-sliderfield": "dev-master",
         "symbiote/silverstripe-multivaluefield": "^5.0",
-        "jinjie/codeeditorfield": "^0.0.4"
+        "jinjie/codeeditorfield": "^0.0.4",
+        "cwp/starter-theme": "dev-i3-modern",
+        "cwp/cwp": "^2.7",
+        "cwp/agency-extensions": "^2.4",
+        "cwp/watea-theme": "dev-i3-watea"
     },
     "require-dev": {
         "sminnee/phpunit": "^5.7",
@@ -50,6 +52,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/i3waitematadhb/cwp-starter-theme.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/i3waitematadhb/cwp-watea-theme.git"
         }
     ],
     "prefer-stable": true,

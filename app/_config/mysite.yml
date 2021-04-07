@@ -18,6 +18,9 @@ CWP\CWP\PageTypes\NewsPage:
 Silverstripe\Security\Member:
   extensions:
     - MemberExtension
+CWP\CWP\PageTypes\BaseHomePage:
+  extensions:
+    - CWP\AgencyExtensions\Extensions\CarouselPageExtension
 # UTF8MB4 has limited support in older MySQL versions.
 # Remove this configuration if you experience issues.
 ---
