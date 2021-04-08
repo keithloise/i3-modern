@@ -16,6 +16,7 @@
         "tractorcow/silverstripe-sliderfield": "dev-master",
         "symbiote/silverstripe-multivaluefield": "^5.0",
         "jinjie/codeeditorfield": "^0.0.4",
+        "silverstripe/tagfield": "2.3.*",
         "cwp/starter-theme": "dev-i3-modern",
         "cwp/cwp": "^2.7",
         "cwp/agency-extensions": "^2.4",
