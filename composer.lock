@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "10e0ce2e21e5068cd37d27ed6484c333",
+    "content-hash": "07b06402b0404f442c68888acf9dd083",
     "packages": [
         {
             "name": "bramus/ansi-php",
@@ -502,60 +502,6 @@
             "time": "2021-01-14T11:07:16+00:00"
         },
         {
-            "name": "cwp/agency-extensions",
-            "version": "2.4.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/silverstripe/cwp-agencyextensions.git",
-                "reference": "b5a28a0c6bb9e98b4882d72b968f1e0ffc2e174a"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/silverstripe/cwp-agencyextensions/zipball/b5a28a0c6bb9e98b4882d72b968f1e0ffc2e174a",
-                "reference": "b5a28a0c6bb9e98b4882d72b968f1e0ffc2e174a",
-                "shasum": ""
-            },
-            "require": {
-                "cwp/cwp": "^2",
-                "silverstripe/framework": "^4.1",
-                "symbiote/silverstripe-gridfieldextensions": "^3.1"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^5.7",
-                "squizlabs/php_codesniffer": "^3"
-            },
-            "type": "silverstripe-vendormodule",
-            "extra": {
-                "expose": [
-                    "thirdparty/TinyMCE-FontAwesome-Plugin/fontawesome",
-                    "client/dist"
-                ],
-                "branch-alias": {
-                    "dev-master": "2.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "CWP\\AgencyExtensions\\": "src/",
-                    "CWP\\AgencyExtensions\\Tests\\": "tests/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "Base module for the default CWP theme to add features",
-            "keywords": [
-                "cwp",
-                "silverstripe"
-            ],
-            "support": {
-                "issues": "https://github.com/silverstripe/cwp-agencyextensions/issues",
-                "source": "https://github.com/silverstripe/cwp-agencyextensions/tree/2.4.1"
-            },
-            "time": "2020-11-10T21:59:23+00:00"
-        },
-        {
             "name": "cwp/cwp",
             "version": "2.7.1",
             "source": {
@@ -710,50 +656,6 @@
                 "source": "https://github.com/i3waitematadhb/cwp-starter-theme/tree/i3-modern"
             },
             "time": "2021-03-30T04:54:32+00:00"
-        },
-        {
-            "name": "cwp/watea-theme",
-            "version": "dev-i3-watea",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/i3waitematadhb/cwp-watea-theme.git",
-                "reference": "a9c4f29c8f8931bba7a54d9ba10a2bdb70782f19"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/i3waitematadhb/cwp-watea-theme/zipball/a9c4f29c8f8931bba7a54d9ba10a2bdb70782f19",
-                "reference": "a9c4f29c8f8931bba7a54d9ba10a2bdb70782f19",
-                "shasum": ""
-            },
-            "require": {
-                "cwp/agency-extensions": "^2.0",
-                "cwp/starter-theme": "dev-i3-modern"
-            },
-            "type": "silverstripe-theme",
-            "extra": {
-                "installer-name": "watea",
-                "branch-alias": {
-                    "dev-master": "3.x-dev"
-                },
-                "expose": [
-                    "dist",
-                    "ico",
-                    "images"
-                ]
-            },
-            "license": [
-                "BSD-3-Clause"
-            ],
-            "description": "CWP Watea theme",
-            "keywords": [
-                "cwp",
-                "silverstripe",
-                "theme"
-            ],
-            "support": {
-                "source": "https://github.com/i3waitematadhb/cwp-watea-theme/tree/i3-watea"
-            },
-            "time": "2021-03-30T05:52:00+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -6607,8 +6509,7 @@
         "unclecheese/display-logic": 20,
         "tractorcow/silverstripe-colorpicker": 20,
         "tractorcow/silverstripe-sliderfield": 20,
-        "cwp/starter-theme": 20,
-        "cwp/watea-theme": 20
+        "cwp/starter-theme": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
