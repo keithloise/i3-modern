@@ -1,0 +1,3 @@
+en:
+  Silverstripe\SiteConfig\SiteConfig:
+    'LogosIconsTab': Logos/Icons
