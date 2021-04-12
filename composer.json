@@ -18,9 +18,7 @@
         "jinjie/codeeditorfield": "^0.0.4",
         "silverstripe/tagfield": "2.3.*",
         "cwp/starter-theme": "dev-i3-modern",
-        "cwp/cwp": "^2.7",
-        "cwp/agency-extensions": "^2.4",
-        "cwp/watea-theme": "dev-i3-watea"
+        "cwp/cwp": "^2.7"
     },
     "require-dev": {
         "sminnee/phpunit": "^5.7",
@@ -53,10 +51,6 @@
         {
             "type": "vcs",
             "url": "https://github.com/i3waitematadhb/cwp-starter-theme.git"
-        },
-        {
-            "type": "vcs",
-            "url": "https://github.com/i3waitematadhb/cwp-watea-theme.git"
         }
     ],
     "prefer-stable": true,
