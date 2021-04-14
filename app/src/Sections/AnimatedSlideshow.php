@@ -10,7 +10,7 @@ namespace {
     use Symbiote\GridFieldExtensions\GridFieldEditableColumns;
     use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
 
-    class AnimatedSlideshow extends DataObject
+    class AnimatedSlideshow extends Section
     {
         private static $singular_name = 'Animated Slideshow';
 
