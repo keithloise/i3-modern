@@ -60,6 +60,11 @@ namespace {
             return self::singleton($this->Type)->singular_name();
         }
 
+        public function getDisplaySectionTypeTrim()
+        {
+            return str_replace(' ','', self::singleton($this->Type)->singular_name());
+        }
+
         public function getCMSFields()
         {
             $fields = new FieldList();
