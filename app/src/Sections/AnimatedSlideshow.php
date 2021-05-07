@@ -6,7 +6,6 @@ namespace {
     use SilverStripe\Forms\FieldList;
     use SilverStripe\Forms\GridField\GridField;
     use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
-    use SilverStripe\ORM\DataObject;
     use Symbiote\GridFieldExtensions\GridFieldEditableColumns;
     use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
 
