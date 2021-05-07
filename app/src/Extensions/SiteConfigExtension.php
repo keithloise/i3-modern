@@ -8,11 +8,12 @@ namespace {
     use SilverStripe\Forms\GridField\GridField;
     use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
     use SilverStripe\ORM\DataExtension;
+    use TractorCow\SliderField\SliderField;
 
     class SiteConfigExtension extends DataExtension
     {
         private static $db = [
-
+            'LogoSize' => 'Int'
         ];
 
         private static $has_one = [
@@ -31,7 +32,8 @@ namespace {
             );
 
             $fields->addFieldToTab('Root.Logos/Icons', UploadField::create('Logo')
-                ->setFolderName('Logo'));
+                ->setFolderName('SiteLogo'));
+            $fields->addFieldToTab('Root.Logos/Icons', SliderField::create('LogoSize', 'Logo size', 100, 300));
 
             //Section
             $configWidth = GridFieldConfig_RecordEditor::create('999');
