@@ -2,8 +2,8 @@
 
 namespace {
 
-    class Banner extends Section
+    class ImageBanner extends Section
     {
-
+        private static $singular_name = 'Image Banner';
     }
 }
