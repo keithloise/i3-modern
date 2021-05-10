@@ -8,11 +8,14 @@ namespace {
     use SilverStripe\Forms\FieldList;
     use SilverStripe\Forms\HiddenField;
     use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
+    use SilverStripe\Forms\ListboxField;
     use SilverStripe\Forms\Tab;
     use SilverStripe\Forms\TabSet;
     use SilverStripe\Forms\TextField;
+    use SilverStripe\ORM\ArrayList;
     use SilverStripe\ORM\DataObject;
     use SilverStripe\TagField\StringTagField;
+    use SilverStripe\View\ArrayData;
     use SwiftDevLabs\CodeEditorField\Forms\CodeEditorField;
 
     class Section extends DataObject
@@ -67,6 +70,21 @@ namespace {
             return str_replace(' ','', self::singleton($this->Type)->singular_name());
         }
 
+        public function getReadablePaddings()
+        {
+            $output = new ArrayList();
+            $paddings = explode(',', $this->Paddings);
+            if (count($paddings)) {
+                foreach ($paddings as $padding) {
+                    $output->push(
+                        new ArrayData(array('Name' => $padding))
+                    );
+                }
+            }
+
+            return $output;
+        }
+
         public function getCMSFields()
         {
             $fields = new FieldList();
@@ -94,9 +112,9 @@ namespace {
 
             $fields->addFieldToTab('Root.Settings', DropdownField::create('Width', 'Section width',
                 SectionWidth::get()->filter('Archived', false)->map('Class', 'Name')));
-            $fields->addFieldToTab('Root.Settings', StringTagField::create('Paddings', 'Paddings',
-                Padding::get()->map('Name', 'Name'), explode(',', $this->Paddings))->setCanCreate(true));
-            $fields->addFieldToTab('Root.Settings', CodeEditorField::create('CodeEditor'));
+            $fields->addFieldToTab('Root.Settings', ListboxField::create('Paddings', 'Paddings',
+                Padding::get()->map('Class', 'Name')));
+            $fields->addFieldToTab('Root.CodeEditor', CodeEditorField::create('CodeEditor'));
             $fields->addFieldToTab('Root.Main', CheckboxField::create('Archived'));
             $fields->addFieldToTab('Root.Main', HiddenField::create('Sort'));
 
