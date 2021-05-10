@@ -51,7 +51,7 @@ namespace {
                     'cp-right'  => 'Right'
                 )
             ));
-            $fields->addFieldToTab('Root.Main', CheckboxField::create('ScrollIcon', 'Show scroll icon'));
+            $fields->addFieldToTab('Root.Main', CheckboxField::create('ShowScrollIcon', 'Show scroll icon'));
         }
     }
 }
