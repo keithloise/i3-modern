@@ -12,6 +12,7 @@ namespace {
     use SilverStripe\Forms\TabSet;
     use SilverStripe\Forms\TextField;
     use SilverStripe\ORM\DataObject;
+    use SilverStripe\TagField\StringTagField;
     use SwiftDevLabs\CodeEditorField\Forms\CodeEditorField;
 
     class Section extends DataObject
@@ -24,6 +25,7 @@ namespace {
             'Content' => 'HTMLText',
             'Type'    => 'Varchar',
             'Width'   => 'Varchar',
+            'Paddings'=> 'Text',
             'CodeEditor' => 'HTMLText',
             'Archived'   => 'Boolean',
             'Sort'       => 'Int'
@@ -86,13 +88,14 @@ namespace {
                 $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Content'));
             }
 
-            $fields->addFieldToTab('Root.Settings', DropdownField::create('Width', 'Section width',
-                SectionWidth::get()->filter('Archived', false)->map('Class', 'Name')));
-
             $instance = self::singleton($this->Type);
             $instance->ID = $this->ID;
             $instance->getSectionCMSFields($fields);
 
+            $fields->addFieldToTab('Root.Settings', DropdownField::create('Width', 'Section width',
+                SectionWidth::get()->filter('Archived', false)->map('Class', 'Name')));
+            $fields->addFieldToTab('Root.Settings', StringTagField::create('Paddings', 'Paddings',
+                Padding::get()->map('Name', 'Name'), explode(',', $this->Paddings))->setCanCreate(true));
             $fields->addFieldToTab('Root.Settings', CodeEditorField::create('CodeEditor'));
             $fields->addFieldToTab('Root.Main', CheckboxField::create('Archived'));
             $fields->addFieldToTab('Root.Main', HiddenField::create('Sort'));
