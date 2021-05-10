@@ -4,6 +4,7 @@ namespace {
 
     use SilverStripe\AssetAdmin\Forms\UploadField;
     use SilverStripe\Assets\File;
+    use SilverStripe\Forms\DropdownField;
     use SilverStripe\Forms\FieldList;
     use SilverStripe\Forms\GridField\GridField;
     use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
@@ -13,7 +14,8 @@ namespace {
     class SiteConfigExtension extends DataExtension
     {
         private static $db = [
-            'LogoSize' => 'Int'
+            'LogoSize' => 'Int',
+            'LogoPos'  => 'Varchar'
         ];
 
         private static $has_one = [
@@ -34,6 +36,13 @@ namespace {
             $fields->addFieldToTab('Root.Logos/Icons', UploadField::create('Logo')
                 ->setFolderName('SiteLogo'));
             $fields->addFieldToTab('Root.Logos/Icons', SliderField::create('LogoSize', 'Logo size', 100, 300));
+            $fields->addFieldToTab('Root.Logos/Icons', DropdownField::create('LogoPos', 'Logo position',
+                array(
+                    'lp-left'  => 'Left',
+                    'lp-center'=> 'Center',
+                    'lp-right' => 'Right'
+                )
+            ));
 
             //Section
             $configWidth = GridFieldConfig_RecordEditor::create('999');
