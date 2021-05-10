@@ -35,7 +35,7 @@ namespace {
                 'Width' => [
                     'title' => 'Width',
                     'callback' => function($record, $column, $grid) {
-                        $fields = DropdownField::create($column, $column, SectionWidth::get()->filter('Archived', false)->map('Name','Name'));
+                        $fields = DropdownField::create($column, $column, SectionWidth::get()->filter('Archived', false)->map('Class','Name'));
                         return $fields;
                     }
                 ],
