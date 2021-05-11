@@ -28,7 +28,7 @@ namespace {
         public function getSectionCMSFields(FieldList $fields)
         {
             $fields->addFieldToTab('Root.Main', UploadField::create('Video', 'Banner video')
-                ->setFolderName('Sections/Section_VideoBanner/Videos'));
+                ->setFolderName('Sections/VideoBanner'));
             $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Content'));
             $fields->addFieldToTab('Root.Main', DropdownField::create('ContentPosition', 'Content position',
                 array(
