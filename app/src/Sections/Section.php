@@ -14,7 +14,6 @@ namespace {
     use SilverStripe\Forms\TextField;
     use SilverStripe\ORM\ArrayList;
     use SilverStripe\ORM\DataObject;
-    use SilverStripe\TagField\StringTagField;
     use SilverStripe\View\ArrayData;
     use SwiftDevLabs\CodeEditorField\Forms\CodeEditorField;
 
@@ -31,6 +30,7 @@ namespace {
             'Paddings'=> 'Text',
             'CodeEditor' => 'HTMLText',
             'Archived'   => 'Boolean',
+            'EnableNav'  => 'Boolean',
             'Sort'       => 'Int'
         ];
 
@@ -73,15 +73,14 @@ namespace {
         public function getReadablePaddings()
         {
             $output = new ArrayList();
-            $paddings = explode(',', $this->Paddings);
-            if (count($paddings)) {
+            $paddings = json_decode($this->Paddings);
+            if ($paddings) {
                 foreach ($paddings as $padding) {
                     $output->push(
                         new ArrayData(array('Name' => $padding))
                     );
                 }
             }
-
             return $output;
         }
 
@@ -110,6 +109,7 @@ namespace {
             $instance->ID = $this->ID;
             $instance->getSectionCMSFields($fields);
 
+            $fields->addFieldToTab('Root.Main', CheckboxField::create('EnableNav', 'Add to scroll navigation'));
             $fields->addFieldToTab('Root.Settings', DropdownField::create('Width', 'Section width',
                 SectionWidth::get()->filter('Archived', false)->map('Class', 'Name')));
             $fields->addFieldToTab('Root.Settings', ListboxField::create('Paddings', 'Paddings',
