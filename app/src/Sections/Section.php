@@ -27,7 +27,8 @@ namespace {
             'Content' => 'HTMLText',
             'Type'    => 'Varchar',
             'Width'   => 'Varchar',
-            'Paddings'=> 'Text',
+            'Container'  => 'Varchar',
+            'Paddings'   => 'Text',
             'CodeEditor' => 'HTMLText',
             'Archived'   => 'Boolean',
             'EnableNav'  => 'Boolean',
@@ -112,6 +113,13 @@ namespace {
             $fields->addFieldToTab('Root.Main', CheckboxField::create('EnableNav', 'Add to scroll navigation'));
             $fields->addFieldToTab('Root.Settings', DropdownField::create('Width', 'Section width',
                 SectionWidth::get()->filter('Archived', false)->map('Class', 'Name')));
+            $fields->addFieldToTab('Root.Settings', DropdownField::create('Container', 'Section container',
+                array(
+                    'container p-0'       => 'Fix-width',
+                    'container-fluid p-0' => 'Container fluid',
+                    'container-small p-0' => 'Container small'
+                )
+            )->setDescription('<b>Fix-width</b> container (its max-width changes at each breakpoint)</br><b>Container fluid</b> for a full width container, spanning the entire width of the viewport.</br><b>Container small</b> (max-width fixed at 575px)'));
             $fields->addFieldToTab('Root.Settings', ListboxField::create('Paddings', 'Paddings',
                 Padding::get()->map('Class', 'Name')));
             $fields->addFieldToTab('Root.CodeEditor', CodeEditorField::create('CodeEditor'));
