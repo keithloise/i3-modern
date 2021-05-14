@@ -2,6 +2,8 @@
 
 namespace {
 
+    use TractorCow\Colorpicker\Color;
+    use TractorCow\Colorpicker\Forms\ColorField;
     use SilverStripe\Core\ClassInfo;
     use SilverStripe\Forms\CheckboxField;
     use SilverStripe\Forms\DropdownField;
@@ -29,6 +31,7 @@ namespace {
             'Width'   => 'Varchar',
             'Container'  => 'Varchar',
             'Paddings'   => 'Text',
+            'BgColor'    => Color::class,
             'CodeEditor' => 'HTMLText',
             'Archived'   => 'Boolean',
             'EnableNav'  => 'Boolean',
@@ -120,8 +123,9 @@ namespace {
                     'container-small p-0' => 'Container small'
                 )
             )->setDescription('<b>Fix-width</b> container (its max-width changes at each breakpoint)</br><b>Container fluid</b> for a full width container, spanning the entire width of the viewport.</br><b>Container small</b> (max-width fixed at 575px)'));
-            $fields->addFieldToTab('Root.Settings', ListboxField::create('Paddings', 'Paddings',
+            $fields->addFieldToTab('Root.Settings', ListboxField::create('Paddings', 'Section Paddings',
                 Padding::get()->map('Class', 'Name')));
+            $fields->addFieldToTab('Root.Settings', ColorField::create('BgColor', ' Section background color'));
             $fields->addFieldToTab('Root.CodeEditor', CodeEditorField::create('CodeEditor'));
             $fields->addFieldToTab('Root.Main', CheckboxField::create('Archived'));
             $fields->addFieldToTab('Root.Main', HiddenField::create('Sort'));
