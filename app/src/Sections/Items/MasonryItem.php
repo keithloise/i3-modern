@@ -14,6 +14,8 @@ namespace {
     use SilverStripe\ORM\ArrayList;
     use SilverStripe\ORM\DataObject;
     use SilverStripe\View\ArrayData;
+    use TractorCow\Colorpicker\Color;
+    use TractorCow\Colorpicker\Forms\ColorField;
 
     class MasonryItem extends DataObject
     {
@@ -21,8 +23,10 @@ namespace {
             'Name'    => 'Varchar',
             'Content' => 'HTMLText',
             'ContentPaddings' => 'Text',
+            'ImagePaddings'   => 'Text',
             'Animation' => 'Text',
             'ImageSize' => 'Text',
+            'BgColor' => Color::class,
             'Archived'=> 'Boolean',
             'Sort'    => 'Int',
         ];
@@ -56,11 +60,14 @@ namespace {
                     'i-large' => 'Large'
                 )
             )->setDescription('<strong>Small</strong> = 40% of your viewport(browser) height<br><strong>Medium</strong> = 70% of your viewport(browser) height<br><strong>large</strong> = 100% of your viewport(browser) height' ));
+            $fields->addFieldToTab('Root.Main', ListboxField::create('ImagePaddings', 'Image Paddings',
+                Padding::get()->map('Class', 'Name')));
             $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Content'));
             $fields->addFieldToTab('Root.Main', ListboxField::create('ContentPaddings', 'Content Paddings',
                 Padding::get()->map('Class', 'Name')));
             $fields->addFieldToTab('Root.Main', DropdownField::create('Animation', 'Animation',
-                Animation::get()->filter('Archive', false)->map('Name','Name')));
+                Animation::get()->filter('Archived', false)->map('Name','Name')));
+            $fields->addFieldToTab('Root.Main', ColorField::create('BgColor', 'Background color'));
             $fields->addFieldToTab('Root.Main', CheckboxField::create('Archived'));
             $fields->addFieldToTab('Root.Main', HiddenField::create('Sort'));
 
@@ -77,6 +84,20 @@ namespace {
         {
             $output = new ArrayList();
             $paddings = json_decode($this->ContentPaddings);
+            if ($paddings) {
+                foreach ($paddings as $padding) {
+                    $output->push(
+                        new ArrayData(array('Name' => $padding))
+                    );
+                }
+            }
+            return $output;
+        }
+
+        public function getReadableImagePaddings()
+        {
+            $output = new ArrayList();
+            $paddings = json_decode($this->ImagePaddings);
             if ($paddings) {
                 foreach ($paddings as $padding) {
                     $output->push(
