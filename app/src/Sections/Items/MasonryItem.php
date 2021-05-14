@@ -5,17 +5,24 @@ namespace {
     use SilverStripe\AssetAdmin\Forms\UploadField;
     use SilverStripe\Assets\Image;
     use SilverStripe\Forms\CheckboxField;
+    use SilverStripe\Forms\DropdownField;
     use SilverStripe\Forms\HiddenField;
     use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
+    use SilverStripe\Forms\ListboxField;
     use SilverStripe\Forms\ReadonlyField;
     use SilverStripe\Forms\TextField;
+    use SilverStripe\ORM\ArrayList;
     use SilverStripe\ORM\DataObject;
+    use SilverStripe\View\ArrayData;
 
     class MasonryItem extends DataObject
     {
         private static $db = [
             'Name'    => 'Varchar',
             'Content' => 'HTMLText',
+            'ContentPaddings' => 'Text',
+            'Animation' => 'Text',
+            'ImageSize' => 'Text',
             'Archived'=> 'Boolean',
             'Sort'    => 'Int',
         ];
@@ -31,8 +38,6 @@ namespace {
 
         private static $summary_fields = [
             'Name',
-            'Content.Summary'    => 'Content Summary',
-            'Image.CMSThumbnail' => 'Content image',
             'Status'
         ];
 
@@ -44,7 +49,18 @@ namespace {
             $fields->addFieldToTab('Root.Main', TextField::create('Name'));
             $fields->addFieldToTab('Root.Main', UploadField::create('Image')
                 ->setFolderName('Sections/MasonryContent'));
+            $fields->addFieldToTab('Root.Main', DropdownField::create('ImageSize', 'Image size',
+                array(
+                    'i-small' => 'Small',
+                    'i-medium' => 'Medium',
+                    'i-large' => 'Large'
+                )
+            )->setDescription('<strong>Small</strong> = 40% of your viewport(browser) height<br><strong>Medium</strong> = 70% of your viewport(browser) height<br><strong>large</strong> = 100% of your viewport(browser) height' ));
             $fields->addFieldToTab('Root.Main', HTMLEditorField::create('Content'));
+            $fields->addFieldToTab('Root.Main', ListboxField::create('ContentPaddings', 'Content Paddings',
+                Padding::get()->map('Class', 'Name')));
+            $fields->addFieldToTab('Root.Main', DropdownField::create('Animation', 'Animation',
+                Animation::get()->filter('Archive', false)->map('Name','Name')));
             $fields->addFieldToTab('Root.Main', CheckboxField::create('Archived'));
             $fields->addFieldToTab('Root.Main', HiddenField::create('Sort'));
 
@@ -55,6 +71,20 @@ namespace {
         {
             if($this->Archived == 1) return _t('GridField.Archived', 'Archived');
             return _t('GridField.Live', 'Live');
+        }
+
+        public function getReadableContentPaddings()
+        {
+            $output = new ArrayList();
+            $paddings = json_decode($this->ContentPaddings);
+            if ($paddings) {
+                foreach ($paddings as $padding) {
+                    $output->push(
+                        new ArrayData(array('Name' => $padding))
+                    );
+                }
+            }
+            return $output;
         }
     }
 }
